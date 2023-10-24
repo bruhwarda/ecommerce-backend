@@ -34,14 +34,14 @@ products.belongsToMany(carts, {
   onUpdate: "CASCADE",
   onDelete: "CASCADE",
 });
-
-categories.belongsToMany(products, {
-  through: "category_product",
+//one-many relation
+categories.hasMany(products, {
+  foreignKey: { name: "categoryId", allowNull: false, unique: true },
   onUpdate: "CASCADE",
   onDelete: "CASCADE",
 });
-products.belongsToMany(categories, {
-  through: "category_product",
+products.belongsTo(categories, {
+  foreignKey: { name: "categoryId", allowNull: false, unique: true },
   onUpdate: "CASCADE",
   onDelete: "CASCADE",
 });

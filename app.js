@@ -7,6 +7,7 @@ var logger = require("morgan");
 var usersRouter = require("./routes/users");
 var cartsRouter = require("./routes/carts");
 var productRouter = require("./routes/products");
+var categoryRouter = require("./routes/category");
 var app = express();
 
 // view engine setup
@@ -22,6 +23,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/auth", usersRouter);
 app.use("/cart", cartsRouter);
 app.use("/product", productRouter);
+app.use("/category", categoryRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

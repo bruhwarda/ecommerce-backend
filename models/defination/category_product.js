@@ -1,21 +1,12 @@
 const DataTypes = require("sequelize");
 let sequelize = require("../../common/dbConnection");
-const carts = sequelize.define(
-  "carts",
+const category_product = sequelize.define(
+  "category_product",
   {
     id: {
       primaryKey: true,
       autoIncrement: true,
       type: DataTypes.INTEGER,
-    },
-
-    total_items: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    total_price: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
     },
   },
   {
@@ -23,7 +14,7 @@ const carts = sequelize.define(
     timestamps: true,
     paranoid: true,
     sequelize,
-    modelName: "carts",
+    modelName: "category_product",
   }
 );
-module.exports = carts;
+module.exports = category_product;

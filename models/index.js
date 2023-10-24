@@ -1,23 +1,51 @@
 let sequelize = require("../common/dbConnection");
 let user = require("./defination/users");
 let categories = require("./defination/categories");
-let orders = require("./defination//orders");
+
 let products = require("./defination/products");
 let carts = require("./defination/carts");
 const models = {
   user,
   categories,
-  orders,
+
   products,
   carts,
 };
 //one-one relation
-// user.hasOne(carts, {
-//   onDelete: "CASCADE",
-// });
-// carts.belongsTo(user, {
-//   onDelete: "CASCADE",
-// });
+user.hasOne(carts, {
+  onUpdate: "CASCADE",
+  onDelete: "CASCADE",
+  foreignKey: { name: "userId", allowNull: false, unique: true },
+});
+carts.belongsTo(user, {
+  onUpdate: "CASCADE",
+  onDelete: "CASCADE",
+  foreignKey: { name: "userId", allowNull: false, unique: true },
+});
+
+//many-many relation
+carts.belongsToMany(products, {
+  through: "cart_items",
+  onUpdate: "CASCADE",
+  onDelete: "CASCADE",
+});
+products.belongsToMany(carts, {
+  through: "cart_items",
+  onUpdate: "CASCADE",
+  onDelete: "CASCADE",
+});
+
+categories.belongsToMany(products, {
+  through: "category_product",
+  onUpdate: "CASCADE",
+  onDelete: "CASCADE",
+});
+products.belongsToMany(categories, {
+  through: "category_product",
+  onUpdate: "CASCADE",
+  onDelete: "CASCADE",
+});
+
 sequelize.models = models;
 console.log(models);
 const db = {};

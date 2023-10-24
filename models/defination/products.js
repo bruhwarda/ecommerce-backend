@@ -29,7 +29,7 @@ const products = sequelize.define(
   {
     //these are global properties
     timestamps: true,
-    paranoid: true, //db me se data delete nhi krta mtlb pgADMIN ME PRA HOTA HAI
+    paranoid: false, //db me se data delete nhi krta mtlb pgADMIN ME PRA HOTA HAI
     sequelize, //instance
     modelName: "products",
   }

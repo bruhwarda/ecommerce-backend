@@ -13,4 +13,9 @@ module.exports = {
     console.log(result);
     return result;
   },
+  createUsersHelper: async (data) => {
+    const result = await models.user.create(data);
+    console.log(result);
+    return result;
+  },
 };
